@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.0.7 - 2024-04-19
+### Changed
+Expose slug attribute for the Organization
+
+
+## v0.0.6 - 2024-04-04
+### Changed
+* Remove environment tests to have a release with service account support
 
 
 ## v0.0.5 - 2023-07-17

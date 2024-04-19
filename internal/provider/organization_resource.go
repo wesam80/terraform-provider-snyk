@@ -45,6 +45,7 @@ type OrganizationResource struct {
 // OrganizationResourceModel describes the resource data model.
 type OrganizationResourceModel struct {
 	Id          types.String `tfsdk:"id"`
+	Slug        types.String `tfsdk:"slug"`
 	GroupId     types.String `tfsdk:"group_id"`
 	Name        types.String `tfsdk:"name"`
 	SourceOrgId types.String `tfsdk:"source_organization_id"`
@@ -66,6 +67,10 @@ func (r *OrganizationResource) Schema(ctx context.Context, req resource.SchemaRe
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+			},
+			"slug": schema.StringAttribute{
+				MarkdownDescription: "The slug of the organization",
+				Computed:            true,
 			},
 			"name": schema.StringAttribute{
 				MarkdownDescription: "The name of the organization",
@@ -127,6 +132,7 @@ func (r *OrganizationResource) Create(ctx context.Context, req resource.CreateRe
 		return
 	} else {
 		plan.Id = types.StringValue(res.ID)
+		plan.Slug = types.StringValue(res.Slug)
 	}
 
 	// Set state to fully populated data
@@ -154,6 +160,7 @@ func (r *OrganizationResource) Read(ctx context.Context, req resource.ReadReques
 	data.GroupId = types.StringValue(res.GroupId)
 	data.Id = types.StringValue(res.ID)
 	data.Name = types.StringValue(res.Name)
+	data.Slug = types.StringValue(res.Slug)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
