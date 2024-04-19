@@ -42,3 +42,5 @@ terraform-provider-snyk
 
 # config for local testing
 local-config.mk
+
+.vscode/*

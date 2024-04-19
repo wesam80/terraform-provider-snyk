@@ -23,7 +23,7 @@ import (
 	snyk_http "github.com/snyk-terraform-assets/terraform-provider-snyk/internal/http"
 )
 
-const VERSION = "2023-09-20"
+const VERSION = "2024-04-11"
 
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)

@@ -45,6 +45,7 @@ type Organization struct {
 	Name    string
 	GroupId string
 	ID      string
+	Slug    string
 }
 
 func (c *Client) GetOrganization(ctx context.Context, organizationID string) (org *Organization, e error) {
@@ -84,7 +85,7 @@ func (c *Client) GetOrganization(ctx context.Context, organizationID string) (or
 	if err := json.Unmarshal(body, &result); err != nil {
 		return nil, err
 	}
-	org = &Organization{Name: result.Data.Attributes.Name, GroupId: result.Data.Attributes.GroupID, ID: result.Data.ID}
+	org = &Organization{Name: result.Data.Attributes.Name, GroupId: result.Data.Attributes.GroupID, ID: result.Data.ID, Slug: result.Data.Attributes.Slug}
 
 	return org, nil
 }
